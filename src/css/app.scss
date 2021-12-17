@@ -1,0 +1,119 @@
+// app global css in Sass form
+// app global css in SCSS form
+.text-explora {
+  font-family: 'Pompiere', 'Roboto', 'Helvetica', 'Helvetica Nueue', sans-serif;
+}
+
+@media (max-width: $breakpoint-xs-max) {
+  .small-screen-only {
+    display: block;
+  }
+
+  .large-screen-only {
+    display: none;
+  }
+}
+
+@media (min-width: $breakpoint-xs-max) {
+  .small-screen-only {
+    display: none;
+  }
+
+  .large-screen-only {
+    display: block;
+  }
+  .my-card {
+    max-width: 330px;
+  }
+  // .my-card {
+  //   max-width: 1000px;
+  // }
+}
+
+@media (min-width: 1024px) {
+  .ipad-and-above {
+    display: none;
+  }
+}
+
+.constrained {
+  max-width: 1270px;
+  margin: 0 auto;
+}
+
+.rounded-box {
+  border-radius: 2px;
+}
+
+.myselector {
+  min-width: 18rem;
+  max-width: 18rem;
+}
+
+.extra-constrained {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.extra-constrained2 {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.slimmed {
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+.chat {
+  max-width: 19rem;
+  min-width: 19rem;
+}
+.darkgreen {
+  color: #f12d2d;
+}
+
+.lightgreen {
+  color: #f4faf4;
+}
+
+.custom-caption {
+  text-align: center;
+  padding: 12px;
+  color: rgb(196, 248, 9);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+// .custom-caption2 {
+//   color: rgb(172, 174, 175);
+// }
+.custom-caption2 {
+  color: rgb(40, 185, 243);
+}
+
+// .bordered {
+//   border: 1px solid rgb(212, 208, 208);
+//   border-radius: 12px;
+// }
+.profile-pic {
+  min-width: 16rem;
+  min-height: 16rem;
+  max-width: 16rem;
+  max-height: 16rem;
+  border-radius: 50%;
+  border: 1px solid grey;
+}
+
+.profile-pic2 {
+  min-width: 10rem;
+  min-height: 10rem;
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 50%;
+  border: 1px solid grey;
+}
+
+#vue-cards-group {
+  display: flex;
+  justify-content: center;
+}
