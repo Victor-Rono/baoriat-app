@@ -195,7 +195,7 @@ export default {
         if (this.searchInput.length >= 3) {
           this.searchResults = [];
           var arr = this.$store.state.fromFirebase;
-          var query = this.searchInput;
+          var query = this.searchInput.tolowercase();
           this.searchDisplay = this.searchInput;
           if (this.category) {
             var results = this.$store.state.fromFirebase.filter(

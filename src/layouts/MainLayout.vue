@@ -25,7 +25,47 @@
           <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
           </q-avatar> -->
-          Baoriat
+
+          <div class="row myselector">
+            <div class="col">Baoriat</div>
+            <div class="col">
+              <q-btn
+                icon="phone"
+                class="small-screen-only"
+                color="positive"
+                flat
+                dense
+                round
+                no-caps
+                @click="
+                  this.confirmDialog(
+                    'Do you want to call Baoriat Agencies now?',
+                    'phone',
+                    'primary',
+                    'call'
+                  )
+                "
+              />
+
+              <q-btn
+                icon="phone"
+                class="large-screen-only"
+                color="positive"
+                flat
+                dense
+                label="Call Us"
+                no-caps
+                @click="
+                  this.confirmDialog(
+                    'Do you want to call Baoriat Agencies now?',
+                    'phone',
+                    'primary',
+                    'call'
+                  )
+                "
+              />
+            </div>
+          </div>
         </q-toolbar-title>
 
         <q-btn
@@ -299,7 +339,7 @@
       </div>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="q-pb-xl">
       <!-- <keep-alive> -->
       <router-view />
       <!-- </keep-alive> -->
@@ -327,6 +367,35 @@
       </q-toolbar>
     </q-footer> -->
   </q-layout>
+
+  <q-dialog v-model="confirm" position="top">
+    <q-card>
+      <q-card-section class="row justify-center">
+        <q-avatar
+          :icon="this.dialogIcon"
+          :color="this.dialogColor"
+          text-color="white"
+        />
+        <span class="q-ml-sm text-center">{{ this.dialogMessage }}</span>
+      </q-card-section>
+
+      <q-card-actions align="center">
+        <q-btn
+          flat
+          icon="check"
+          class="bg-positive text-white q-mr-lg"
+          @click="callUs()"
+          v-close-popup
+        />
+        <q-btn
+          flat
+          icon="close"
+          class="bg-negative text-white q-ml-lg"
+          v-close-popup
+        />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
@@ -402,6 +471,11 @@ export default {
     return {
       myPath: this.$route.fullPath,
       unread: ref(false),
+      dialogMessage: ref(false),
+      dialogIcon: ref(false),
+      dialogColor: ref(false),
+      dialogMethod: ref(false),
+      confirm: ref(false),
       myTabs: [
         {
           to: '/about',
@@ -455,13 +529,6 @@ export default {
           icon: 'fas fa-lock',
           className: '',
         },
-
-        // {
-        //   to: '/blog',
-        //   label: 'Our blog',
-        //   icon: 'fas fa-blog',
-        //   className: '',
-        // },
       ],
     };
   },
@@ -469,6 +536,21 @@ export default {
   methods: {
     qTab() {
       console.log('FFF');
+    },
+
+    callUs() {
+      var phone = '+254721554937';
+      // console.log(phone)
+      window.location.assign('tel:' + phone);
+      // console.log("+254")
+    },
+
+    confirmDialog(a, b, c, d) {
+      this.dialogMessage = a;
+      this.dialogIcon = b;
+      this.dialogColor = c;
+      this.dialogMethod = d;
+      this.confirm = true;
     },
 
     assignedTo(x) {
