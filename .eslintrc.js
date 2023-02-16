@@ -49,7 +49,7 @@ module.exports = {
 
   plugins: [
     // required to apply rules which need type information
-    '@typescript-eslint',
+    // '@typescript-eslint',
 
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-file
     // required to lint *.vue files
@@ -77,8 +77,8 @@ module.exports = {
   rules: {
     'prefer-promise-reject-errors': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
-		'@typescript-eslint/no-unsafe-call': 'off',
-		'@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
 
     // TypeScript
     quotes: ['warn', 'single', { avoidEscape: true }],

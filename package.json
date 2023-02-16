@@ -6,7 +6,6 @@
   "author": "Victor-Rono <victorrono65@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "icons": "icongenie generate -i E:/agencies.png  --skip-trim --theme-color FE1743",
     "cordova:dev": "quasar dev -m cordova -T android -- --buildConfig=\"../build.cordova.json\"",
@@ -29,16 +28,10 @@
     "vuex": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.13.14",
     "@quasar/app": "^3.0.0",
     "@types/node": "^12.20.21",
-    "@typescript-eslint/eslint-plugin": "^4.16.1",
-    "@typescript-eslint/parser": "^4.16.1",
     "electron": "^15.3.1",
-    "electron-packager": "^15.4.0",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-vue": "^7.0.0"
+    "electron-packager": "^15.4.0"
   },
   "browserslist": [
     "last 10 Chrome versions",

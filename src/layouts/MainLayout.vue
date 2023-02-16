@@ -1,27 +1,13 @@
 <!--quasar build -m cordova -T android --release -- --packageType=bundle-->
+
 <template>
   <q-layout view="hHh LpR fFf">
-    <q-header
-      class="text-primary"
-      id="topNav"
-      :class="[darkMode ? 'bg-white text-black' : 'bg-dark text-grey-1 ']"
-      elevated
-    >
+    <q-header class="text-primary" id="topNav" :class="[darkMode ? 'bg-white text-black' : 'bg-dark text-grey-1 ']"
+      elevated>
       <q-toolbar class="constrained">
-        <q-btn
-          dense
-          flat
-          round
-          icon="menu"
-          @click="toggleLeftDrawer"
-          class="text-primary"
-        />
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" class="text-primary" />
 
-        <q-toolbar-title
-          class="text-primary"
-          style="cursor: pointer"
-          @click="home"
-        >
+        <q-toolbar-title class="text-primary" style="cursor: pointer" @click="home">
           <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
           </q-avatar> -->
@@ -29,139 +15,58 @@
           <div class="row myselector">
             <div class="col">Baoriat</div>
             <div class="col">
-              <q-btn
-                icon="phone"
-                class="small-screen-only"
-                color="positive"
-                flat
-                dense
-                round
-                no-caps
-                @click="
-                  this.confirmDialog(
-                    'Do you want to call Baoriat Agencies now?',
-                    'phone',
-                    'primary',
-                    'call'
-                  )
-                "
-              />
+              <q-btn icon="phone" class="small-screen-only" color="positive" flat dense round no-caps @click="
+                this.confirmDialog(
+                  'Do you want to call Baoriat Agencies now?',
+                  'phone',
+                  'primary',
+                  'call'
+                )
+              " />
 
-              <q-btn
-                icon="phone"
-                class="large-screen-only"
-                color="positive"
-                flat
-                dense
-                label="Call Us"
-                no-caps
-                @click="
-                  this.confirmDialog(
-                    'Do you want to call Baoriat Agencies now?',
-                    'phone',
-                    'primary',
-                    'call'
-                  )
-                "
-              />
+              <q-btn icon="phone" class="large-screen-only" color="positive" flat dense label="Call Us" no-caps @click="
+                this.confirmDialog(
+                  'Do you want to call Baoriat Agencies now?',
+                  'phone',
+                  'primary',
+                  'call'
+                )
+              " />
             </div>
           </div>
         </q-toolbar-title>
 
-        <q-btn
-          v-if="$route.fullPath != '/search'"
-          round
-          flat
-          icon="search"
-          size="md"
-          class="q-mr-md text-primary"
-          to="/search"
-        />
+        <q-btn v-if="$route.fullPath != '/search'" round flat icon="search" size="md" class="q-mr-md text-primary"
+          to="/search" />
 
-        <q-btn
-          v-if="$route.fullPath == '/search'"
-          round
-          flat
-          icon="fas fa-arrow-left"
-          size="md"
-          class="q-mr-md text-primary"
-          @click="$router.go(-1)"
-        />
+        <q-btn v-if="$route.fullPath == '/search'" round flat icon="fas fa-arrow-left" size="md"
+          class="q-mr-md text-primary" @click="$router.go(-1)" />
 
-        <q-btn
-          size="md"
-          flat
-          class="q-mr-md"
-          round
-          icon="far fa-user"
-          @click="toggleRightDrawer"
-          v-if="
-            $route.fullPath != '/signup' &&
-            $route.fullPath != '/login' &&
-            !this.$store.state.myAuth
-          "
-        />
+        <q-btn size="md" flat class="q-mr-md" round icon="far fa-user" @click="toggleRightDrawer" v-if="
+          $route.fullPath != '/signup' &&
+          $route.fullPath != '/login' &&
+          !this.$store.state.myAuth
+        " />
 
-        <q-avatar
-          size="lg"
-          flat
-          class="q-mr-md"
-          round
-          @click="toggleRightDrawer"
-          v-if="
-            $route.fullPath != '/signup' &&
-            $route.fullPath != '/login' &&
-            this.$store.state.myAuth
-          "
-        >
+        <q-avatar size="lg" flat class="q-mr-md" round @click="toggleRightDrawer" v-if="
+          $route.fullPath != '/signup' &&
+          $route.fullPath != '/login' &&
+          this.$store.state.myAuth
+        ">
           <img :src="this.$store.state.myAuth.data().profilePhoto" />
         </q-avatar>
-        <y
-          v-if="this.$store.state.myAuth && this.$store.state.unread.length > 0"
-          @click="assignedTo('messages')"
-        >
-          <q-icon
-            name="eva-message-circle-outline"
-            color="positive"
-            size="sm"
-            round
-            flat
-          />x {{ this.$store.state.unread.length }}
+        <y v-if="this.$store.state.myAuth && this.$store.state.unread.length > 0" @click="assignedTo('messages')">
+          <q-icon name="eva-message-circle-outline" color="positive" size="sm" round flat />x {{
+            this.$store.state.unread.length
+          }}
         </y>
 
-        <y
-          v-if="this.$store.state.myAuth && this.$store.state.unread.length < 1"
-          @click="assignedTo('messages')"
-        >
-          <q-icon
-            name="eva-message-circle-outline"
-            color="light-blue-9"
-            size="sm"
-            round
-            flat
-          />
+        <y v-if="this.$store.state.myAuth && this.$store.state.unread.length < 1" @click="assignedTo('messages')">
+          <q-icon name="eva-message-circle-outline" color="light-blue-9" size="sm" round flat />
         </y>
-        <q-btn
-          class="q-ml-lg"
-          icon="eva-moon"
-          @click="modeToggle"
-          round
-          size="md"
-          v-if="this.darkMode"
-          flat
-          dense
-        />
-        <q-btn
-          class="q-ml-lg"
-          icon="eva-sun-outline"
-          @click="modeToggle"
-          color="grey-1"
-          round
-          size="md"
-          v-if="!this.darkMode"
-          flat
-          dense
-        />
+        <q-btn class="q-ml-lg" icon="eva-moon" @click="modeToggle" round size="md" v-if="this.darkMode" flat dense />
+        <q-btn class="q-ml-lg" icon="eva-sun-outline" @click="modeToggle" color="grey-1" round size="md"
+          v-if="!this.darkMode" flat dense />
       </q-toolbar>
 
       <!-- <q-tabs align="right" class="lt-sm" v-if="searchMenu">
@@ -188,65 +93,33 @@
           </template>
         </q-input>
       </q-tabs> -->
-      <q-tabs
-        dense
-        v-if="$route.fullPath != '/search'"
-        align="center"
-        class="text-body1 large-screen-only constrained"
-      >
+      <q-tabs dense v-if="$route.fullPath != '/search'" align="center" class="text-body1 large-screen-only constrained">
         <y v-for="tab in this.myTabs">
           <q-route-tab :to="tab.to" :label="tab.label" :icon="tab.icon" />
         </y>
-        <a
-          href="https://baoriat.blogspot.com"
-          target="blank"
-          class="text-light-blue-8"
-          style="text-decoration: none"
-          ><q-route-tab label="blog" icon="fas fa-blog"
-        /></a>
+        <a href="https://baoriat.blogspot.com" target="blank" class="text-light-blue-8"
+          style="text-decoration: none"><q-route-tab label="blog" icon="fas fa-blog" /></a>
       </q-tabs>
 
-      <q-tabs
-        dense
-        v-if="$route.fullPath != '/search'"
-        align="center"
-        class="small-screen-only constrained"
-        no-caps
-        mobile-arrows
-      >
+      <q-tabs dense v-if="$route.fullPath != '/search'" align="center" class="small-screen-only constrained" no-caps
+        mobile-arrows>
         <y v-for="tab in this.myTabs">
           <q-route-tab :to="tab.to">
             <q-icon :name="tab.icon" size="xs" />
             {{ tab.label }}
           </q-route-tab>
         </y>
-        <a
-          href="https://baoriat.blogspot.com"
-          target="blank"
-          class="text-light-blue-8"
-          style="text-decoration: none"
-          ><q-route-tab label="blog" icon="fas fa-blog"
-        /></a>
+        <a href="https://baoriat.blogspot.com" target="blank" class="text-light-blue-8"
+          style="text-decoration: none"><q-route-tab label="blog" icon="fas fa-blog" /></a>
       </q-tabs>
     </q-header>
 
     <!-- left drawer -->
-    <q-drawer
-      v-model="leftDrawerOpen"
-      side="left"
-      behavior="mobile"
-      elevated
-      :width="230"
-    >
+    <q-drawer v-model="leftDrawerOpen" side="left" behavior="mobile" elevated :width="230">
       <!-- drawer content -->
       <div class="q-pa-md" style="max-width: 350px">
         <q-toolbar-title class="text-primary">
-          <q-btn
-            class="text-primary"
-            icon="menu"
-            @click="this.toggleLeftDrawer"
-            flat
-          />
+          <q-btn class="text-primary" icon="menu" @click="this.toggleLeftDrawer" flat />
 
           <y @click="home" style="cursor: pointer">Baoriat</y>
         </q-toolbar-title>
@@ -261,12 +134,7 @@
             </q-item>
           </y>
 
-          <a
-            href="https://baoriat.blogspot.com"
-            target="blank"
-            style="text-decoration: none"
-            class="text-light-blue-9"
-          >
+          <a href="https://baoriat.blogspot.com" target="blank" style="text-decoration: none" class="text-light-blue-9">
             <q-item clickable v-ripple class="">
               <q-item-section avatar>
                 <q-icon color="" name="fas fa-blog" size="sm" />
@@ -279,28 +147,19 @@
       </div>
     </q-drawer>
 
-    <q-drawer
-      v-model="rightDrawerOpen"
-      side="right"
-      behavior="mobile"
-      elevated
-      class=""
-    >
+    <q-drawer v-model="rightDrawerOpen" side="right" behavior="mobile" elevated class="">
       <!-- drawer content -->
       <div class="row justify-center q-my-md">
         <div v-if="this.$store.state.myAuth" class="q-pa-md" @click="profile">
           <div class="profile">
-            <q-img
-              class="profile-pic2"
-              :src="this.$store.state.myAuth.data().profilePhoto"
-            />
+            <q-img class="profile-pic2" :src="this.$store.state.myAuth.data().profilePhoto" />
 
             <div class="row justify-center q-pa-xs">
               <p class="text-light-blue-9 text-h6">
                 {{
                   this.$store.state.myAuth.data().firstName +
-                  ' ' +
-                  this.$store.state.myAuth.data().surName
+                    ' ' +
+                    this.$store.state.myAuth.data().surName
                 }}
               </p>
             </div>
@@ -313,25 +172,14 @@
           </div>
         </div>
 
-        <q-btn
-          v-if="this.$store.state.myAuth"
-          class="myselector bg-primary text-white"
-          icon="fas fa-user"
-          label="logout"
-          @click="this.$store.dispatch('logout')"
-        />
+        <q-btn v-if="this.$store.state.myAuth" class="myselector bg-primary text-white" icon="fas fa-user"
+          label="logout" @click="this.$store.dispatch('logout')" />
 
-        <q-btn
-          v-if="
-            !this.$store.state.myAuth &&
-            $route.fullPath != '/signup' &&
-            $route.fullPath != '/login'
-          "
-          class="myselector bg-light-blue-9 text-white"
-          icon="fas fa-user"
-          label="login"
-          to="/login"
-        />
+        <q-btn v-if="
+          !this.$store.state.myAuth &&
+          $route.fullPath != '/signup' &&
+          $route.fullPath != '/login'
+        " class="myselector bg-light-blue-9 text-white" icon="fas fa-user" label="login" to="/login" />
 
         <div class="q-ma-md">
           <!-- {{ $store.state?.myAuth }} -->
@@ -371,34 +219,20 @@
   <q-dialog v-model="confirm" position="top">
     <q-card>
       <q-card-section class="row justify-center">
-        <q-avatar
-          :icon="this.dialogIcon"
-          :color="this.dialogColor"
-          text-color="white"
-        />
+        <q-avatar :icon="this.dialogIcon" :color="this.dialogColor" text-color="white" />
         <span class="q-ml-sm text-center">{{ this.dialogMessage }}</span>
       </q-card-section>
 
       <q-card-actions align="center">
-        <q-btn
-          flat
-          icon="check"
-          class="bg-positive text-white q-mr-lg"
-          @click="callUs()"
-          v-close-popup
-        />
-        <q-btn
-          flat
-          icon="close"
-          class="bg-negative text-white q-ml-lg"
-          v-close-popup
-        />
+        <q-btn flat icon="check" class="bg-positive text-white q-mr-lg" @click="callUs()" v-close-popup />
+        <q-btn flat icon="close" class="bg-negative text-white q-ml-lg" v-close-popup />
       </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
 
-<script>
+<script lang="js">
+// @ts-ignore
 // import { ref } from 'vue';
 import { defineComponent, ref, onBeforeMount } from 'vue';
 import { useQuasar } from 'quasar';

@@ -8,4 +8,6 @@
 .eslintrc.js
 babel.config.js
 /src-ssr
-/src
+/src/store
+/src/components
+/src/pages
